@@ -1,0 +1,10 @@
+# executables
+*.out
+*.exe
+*.o
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/*.db
