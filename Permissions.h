@@ -10,9 +10,11 @@ private:
     bool remove;
 
 public:
-    bool mayView() const;
-    bool maySearch() const;
-    bool mayAdd() const;
-    bool mayModify() const;
-    bool mayRemove() const;
+    bool MayView() const;
+    bool MaySearch() const;
+    bool MayAdd() const;
+    bool MayModify() const;
+    bool MayRemove() const;
+    Permissions(bool mview, bool msearch, bool madd, bool mmod, bool mrem);
+
 };
