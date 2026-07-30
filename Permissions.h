@@ -16,5 +16,4 @@ public:
     bool MayModify() const;
     bool MayRemove() const;
     Permissions(bool mview, bool msearch, bool madd, bool mmod, bool mrem);
-
 };
