@@ -1,9 +1,10 @@
 #pragma once
 #include "Employee.h"
+#include "Login.h"
+#include "Permissions.h"
 #include <iostream>
-using namespace std;
 
-Employee user;
+
 
 
 int main() {
