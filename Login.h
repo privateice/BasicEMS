@@ -16,6 +16,7 @@ class Login
         int ProcessAuthentication(EmployeesList emp,
                 std::string username, std::string pwd);
         void ProcessLogin(EmployeesList emp);
+        Employee GetUserIn() const {return(userin.value());};
         
         Login(){};
 
