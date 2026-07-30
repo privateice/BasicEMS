@@ -1,20 +1,25 @@
 #include "Employee.h"
-#include <functional>
-#include <string>
 
 
-
-Employee::Employee(string pname, string puser, string ppwd, int pID, Permissions pperms)
+Employee::Employee(std::string pname, std::string puser, 
+            std::string ppwd, int pID, Permissions pperms)
+            : permissions(pperms)
 {
     std::hash<std::string> hasher;
     name = pname;
     username = puser;
     password = hasher(ppwd);
     ID = pID;
-    permissions = pperms;
 };
 
-string Employee::GetUsername() const{ return(username);};
-string Employee::GetName() const{ return(name);};
-string Employee::GetPassword() const{ return(password);};
+std::string Employee::GetUsername() const{ return(username);};
+std::string Employee::GetName() const{ return(name);};
+size_t Employee::GetPassword() const{ return(password);};
 int Employee::GetID()const{ return(ID);};
+
+bool Employee::CheckPassword(std::string pwd) const
+{   // check if the password matches: true if yes, false if no
+    std::hash<std::string> hasher;
+    if (hasher(pwd) == password) {return(true);}
+    return(false);
+};

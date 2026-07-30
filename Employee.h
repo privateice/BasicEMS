@@ -1,23 +1,27 @@
 #include <string>;
+#include <functional>
+#include <string>
 #include "Permissions.h"
-using namespace std;
 
 class Employee
 {
     private:
-        string name, username, password;
+        std::string name, username;
+        size_t password;
         int ID;
         Permissions permissions;
         
     public:
-        string GetUsername() const;
-        string GetName() const;
-        string GetPassword() const;
+        std::string GetUsername() const;
+        std::string GetName() const;
+        size_t GetPassword() const;
         int GetID()const;
-        bool GetPermissions() const;
+        Permissions GetPermissions() const;
+        int CheckPassword(std::string pwd) const;
 
-        Employee(string pname, string puser, string ppwd, 
+
+        Employee(std::string pname, std::string puser, std::string ppwd, 
                 int pID, Permissions pperms);
 
 
-}
+};
