@@ -6,11 +6,11 @@ EmployeesList::EmployeesList()
 };
 
 int EmployeesList::FindUser(std::string username) const
-{
+{   //Looks for the employee, returns the index or -1 if not found
     // loop through the employees
     for (size_t i = 0; i < employees.size(); i++)
     {   // look for the username and return the index
-        if (employees[i].GetUsername() == username) {return (i)}
+        if (employees[i].GetUsername() == username) {return (i);};
     }
     return(-1); //return -1 if not found
 };
@@ -29,3 +29,4 @@ void EmployeesList::MakeSomeEmployees()
         Employee("Emmiline Employee", "emmy", "passwordE", 1003, 
             Permissions(true, false, false, false, false)));
 };
+

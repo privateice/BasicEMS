@@ -1,12 +1,14 @@
 #include "Login.h"
 
-int ProcessAuthentication( EmployeesList emp,
+std::pair ProcessAuthentication( EmployeesList emp,
                     std::string username, 
                     std::string pwd) 
 {
     int userindex = emp.FindUser(username);
     if (userindex > -1 ) {
-        return(emp.GetEmployees()[userindex].CheckPassword(pwd));
+        Employee employee = emp.GetEmployees()[userindex];
+        return{employee.CheckPassword(pwd),
+               employee };
     };
     return(-1);
 };
