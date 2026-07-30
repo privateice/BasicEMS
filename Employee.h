@@ -23,5 +23,4 @@ class Employee
         Employee(std::string pname, std::string puser, std::string ppwd, 
                 int pID, Permissions pperms);
 
-
 };

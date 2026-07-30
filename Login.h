@@ -10,11 +10,12 @@
 class Login
 {
     private:
-
+        std::optional<Employee> userin = std::nullopt;
     
     public:
-        std::pair<int, std::optional<Employee>> ProcessAuthentication(EmployeesList emp,
-                std::string username, std::string pwd) const;
+        int ProcessAuthentication(EmployeesList emp,
+                std::string username, std::string pwd);
+        void ProcessLogin(EmployeesList emp);
         
         Login(){};
 
