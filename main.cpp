@@ -2,6 +2,7 @@
 #include "Login.h"
 #include "Permissions.h"
 #include "EmployeesList.h"
+#include "Menu.h"
 #include <iostream>
 
 
@@ -11,11 +12,14 @@ int main() {
     std::cout << "Employee Management System running..." << std::endl;
     EmployeesList employees;
 
-    do
+    do // main event loop
     {
         Login login;
         // returns -2 (exit) or 1 (a user has logged in)
         if (login.ProcessLogin(employees) != 1) {break;} 
+        Menu menu;
+        menu.PrintMenu(login.GetUserIn());
+
 
 
 

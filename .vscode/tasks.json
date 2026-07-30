@@ -15,6 +15,7 @@
                 "Permissions.cpp",
                 "EmployeesList.cpp",
                 "Login.cpp",
+                "Menu.cpp",
                 "-o",
                 "${workspaceFolder}/BasicEMS"
             ],
