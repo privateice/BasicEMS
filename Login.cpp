@@ -14,7 +14,7 @@ int Login::ProcessAuthentication( EmployeesList emp,
     return(-1);
 };
 
-void Login::ProcessLogin(EmployeesList emp)
+int Login::ProcessLogin(EmployeesList emp)
 {   std::string user, pwd;
     int rescode = -2;
     do
@@ -41,11 +41,12 @@ void Login::ProcessLogin(EmployeesList emp)
         case 0: 
             std::cout << "Password Incorrect! Please try again.\n";
             break;
-        default:
+        case 1:
             std::cout << "Welcome " << userin->GetName() 
                 << "! Thanks for logging in.\n";
             break;
         }
     } while (rescode != 1);
-    return;
+    return (rescode);
 };
+

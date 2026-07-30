@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug BasicEMS",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/BasicEMS",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "preLaunchTask": "Build BasicEMS"
+        }
+    ]
+}
