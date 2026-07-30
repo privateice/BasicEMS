@@ -1,8 +1,4 @@
-#include <iostream>
 #include "Login.h"
-#include "Employee.h"
-#include "EmployeesList.h"
-
 
 int ProcessAuthentication( EmployeesList employees,
                     std::string username, 
