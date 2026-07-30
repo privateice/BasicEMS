@@ -17,8 +17,8 @@ int main() {
         Login login;
         // returns -2 (exit) or 1 (a user has logged in)
         if (login.ProcessLogin(employees) != 1) {break;} 
-        Menu menu;
-        menu.PrintMenu(login.GetUserIn());
+        Menu menu(login.GetUserIn());
+        menu.PrintMenu();
 
 
 

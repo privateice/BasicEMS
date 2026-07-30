@@ -2,11 +2,11 @@
 #include <iostream>
 #include "Employee.h"
 
-
-
 class Menu{
 
+    private:
+        std::string menustr;
     public:
-        void PrintMenu(Employee userin) const;
-        Menu(){};
+        void PrintMenu() const;
+        Menu(Employee userin);
 };
