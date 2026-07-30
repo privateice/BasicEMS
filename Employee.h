@@ -1,4 +1,5 @@
-#include <string>;
+#pragma once
+#include <string>
 #include <functional>
 #include <string>
 #include "Permissions.h"
@@ -17,8 +18,7 @@ class Employee
         size_t GetPassword() const;
         int GetID()const;
         Permissions GetPermissions() const;
-        int CheckPassword(std::string pwd) const;
-
+        bool CheckPassword(std::string pwd) const;
 
         Employee(std::string pname, std::string puser, std::string ppwd, 
                 int pID, Permissions pperms);
