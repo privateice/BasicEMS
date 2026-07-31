@@ -35,6 +35,17 @@ void Employee::PrintEmployee() const
         << "\n";
 };
 
+bool Employee::CheckPermissions(std::string command) const
+{   // checks if an Employee may perform the requested command
+
+    if (command == "viewself"){ return(permissions.MayViewSelf());};
+    if (command == "viewother"){ return(permissions.MayViewOther());};
+    if (command == "search"){ return(permissions.MaySearch());};
+    if (command == "add"){ return(permissions.MayAdd());};
+    if (command == "modify"){ return(permissions.MayModify());};
+    if (command == "remove"){ return(permissions.MayRemove());};
+};
+
 std::ostream& operator<<(std::ostream& out, const Employee& employee)
 {
     out << "Employee Record\n\tName: " << employee.GetName()
@@ -45,4 +56,5 @@ std::ostream& operator<<(std::ostream& out, const Employee& employee)
 
     return out;
 };
+
 

@@ -20,6 +20,7 @@ class Employee
         size_t GetPassword() const;
         int GetID()const;
         Permissions GetPermissions() const;
+        bool CheckPermissions(std::string command) const;
         bool CheckPassword(std::string pwd) const;
         void PrintEmployee() const;
         

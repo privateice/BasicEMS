@@ -11,6 +11,7 @@
 int main() {
     std::cout << "Employee Management System running..." << std::endl;
     EmployeesList employees;
+    std::string command = "exit";
 
     do // main event loop
     {
@@ -18,15 +19,21 @@ int main() {
         // returns -2 (exit) or 1 (a user has logged in)
         if (login.ProcessLogin(employees) != 1) {break;} 
         Menu menu(login.GetUserIn());
-        menu.PrintMenu();
-        login.GetUserIn().PrintEmployee();
-        std::cout << login.GetUserIn();
+        do
+        {
+            menu.PrintMenu();
+            command = menu.GetMenuSelection();
+            if (command == "exit"){break;};
+            menu.ProcessSelectedCommand(command, login.GetUserIn());
+
+        } while (true);
+
         employees.ViewSelf(login);
 
 
 
 
-    } while (true);
+    } while (command != "exit");
     
     std::cout << "Thank you for running the EMS. Bye!\n\n";
     return 0;

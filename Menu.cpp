@@ -5,16 +5,46 @@ Menu::Menu(Employee userin)
 {   
     menustr = "";
     Permissions perms = userin.GetPermissions();
-    if (perms.MayViewSelf()){menustr += "To view your record, type 'viewself'\n";}
-    if (perms.MayViewOther()){menustr += "To view another employee's record, type 'viewother'\n";}
-    if (perms.MaySearch()){menustr += "To search employees, type 'search'\n";}
-    if (perms.MayAdd()){menustr += "To add an employee, type 'add'\n";}
-    if (perms.MayModify()){menustr += "To modify an employee, type 'modify'\n";}
-    if (perms.MayRemove()){menustr += "To remove an employee, type 'remove'\n";}
+    if (perms.MayViewSelf()){menustr += "viewself - view your record\n";}
+    if (perms.MayViewOther()){menustr += "viewother - view another employee's record\n";}
+    if (perms.MaySearch()){menustr += "search - search employees\n";}
+    if (perms.MayAdd()){menustr += "add - add an employee\n";}
+    if (perms.MayModify()){menustr += "modify - modify an employee\n";}
+    if (perms.MayRemove()){menustr += "remove - remove an employee\n";}
+    menustr += "exit - exit the program\n\n";
 
 };
 
-void Menu::PrintMenu() const
-{
-    std::cout << menustr << "Please enter a command:\n\n";
+void Menu::PrintMenu() const 
+    { std::cout << menustr;};
+
+std::string Menu::GetMenuSelection() const
+{   // reads a command, checks if valid, returns a valid command
+    // "valid" does not necessary mean "user has permissions."
+
+    bool valid = false; 
+    std::string command = "exit";
+    do
+    {
+        std::cout << "Please enter a valid command:\n";
+        std::cin >> command;
+        valid = allvalidcommands.count(command);
+        if (!valid) {std::cout << "That is not a valid command.\n";}
+    } while (!valid);
+    return(command);
+};
+
+int Menu::ProcessSelectedCommand(std::string command, Employee userin) const
+{   
+    if (userin.CheckPermissions(command))
+    {
+        std::cout << "Process commands will happen here.\n";
+    }
+    else 
+    { 
+        std::cout << "Sorry, you lack permissions to run the " 
+            << command <<" command!\n\n"
+            << "You may run the following commands:\n";
+    };
+    return(0);
 };
