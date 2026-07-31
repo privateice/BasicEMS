@@ -19,12 +19,12 @@ Permissions::Permissions(bool mview, bool mviewo, bool msearch, bool madd, bool 
 
 std::ostream& operator<<(std::ostream& out, const Permissions& perms)
 {
-    out << "View Self: " << (perms.MayViewSelf() ? "yes" : "no")
-        << " View Other: " << (perms.MayViewOther() ? "yes" : "no")
-        << " Search: " << (perms.MaySearch() ? "yes" : "no")
-        << " Add: " << (perms.MayAdd() ? "yes" : "no")
-        << " Modify: " << (perms.MayModify() ? "yes" : "no")
-        << " Remove: " << (perms.MayRemove() ? "yes" : "no")
+    out << "\tView Self: " << (perms.MayViewSelf() ? "yes" : "no") << "\n\t\t\t"
+        << "Search: " << (perms.MaySearch() ? "yes" : "no") << "\t"
+        << "View Other: " << (perms.MayViewOther() ? "yes" : "no") << "\n\t\t\t"
+        << "Add: " << (perms.MayAdd() ? "yes" : "no") << "\t\t"
+        << "Modify: " << (perms.MayModify() ? "yes" : "no") << "\t\t"
+        << "Remove: " << (perms.MayRemove() ? "yes" : "no")
         << "\n";
 
     return out;

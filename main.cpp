@@ -19,6 +19,9 @@ int main() {
         if (login.ProcessLogin(employees) != 1) {break;} 
         Menu menu(login.GetUserIn());
         menu.PrintMenu();
+        login.GetUserIn().PrintEmployee();
+        std::cout << login.GetUserIn();
+
 
 
 

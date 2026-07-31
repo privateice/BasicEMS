@@ -11,5 +11,6 @@ class EmployeesList
         int FindUser(std::string username) const;
         void MakeSomeEmployees();
         EmployeesList();
+        std::vector<Employee> GetEmployees() const {return(employees);};
 };
 
