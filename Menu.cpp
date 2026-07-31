@@ -1,5 +1,5 @@
 #include "Menu.h"
-
+#include "EmployeesList.h"
 
 Menu::Menu(Employee userin)
 {   
@@ -34,10 +34,16 @@ std::string Menu::GetMenuSelection() const
     return(command);
 };
 
-int Menu::ProcessSelectedCommand(std::string command, Employee userin) const
+int Menu::ProcessSelectedCommand(std::string command, Login login, EmployeesList employees)
 {   
-    if (userin.CheckPermissions(command))
+    if (login.GetUserIn().CheckPermissions(command))
     {
+        if (command == "viewself") {employees.ViewSelf(login); return(0);};
+        if (command == "viewother") {employees.ViewOther(); return(0);};
+        if (command == "search") {employees.Search(); return(0);};
+        if (command == "add") {employees.Add(); return(0);};
+        if (command == "modify") {employees.Modify(); return(0);};
+        if (command == "remove") {employees.Remove(); return(0);};
         std::cout << "Process commands will happen here.\n";
     }
     else 

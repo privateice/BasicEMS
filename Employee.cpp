@@ -44,6 +44,7 @@ bool Employee::CheckPermissions(std::string command) const
     if (command == "add"){ return(permissions.MayAdd());};
     if (command == "modify"){ return(permissions.MayModify());};
     if (command == "remove"){ return(permissions.MayRemove());};
+    return(false);
 };
 
 std::ostream& operator<<(std::ostream& out, const Employee& employee)

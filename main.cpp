@@ -24,11 +24,11 @@ int main() {
             menu.PrintMenu();
             command = menu.GetMenuSelection();
             if (command == "exit"){break;};
-            menu.ProcessSelectedCommand(command, login.GetUserIn());
+            menu.ProcessSelectedCommand(command, login, employees);
 
         } while (true);
 
-        employees.ViewSelf(login);
+        
 
 
 

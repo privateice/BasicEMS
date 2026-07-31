@@ -6,12 +6,22 @@ EmployeesList::EmployeesList()
     MakeSomeEmployees();
 };
 
-int EmployeesList::FindUser(std::string username) const
+int EmployeesList::FindUserbyUsername(std::string username) const
 {   //Looks for the employee, returns the index or -1 if not found
     // loop through the employees
     for (size_t i = 0; i < employees.size(); i++)
     {   // look for the username and return the index
         if (employees[i].GetUsername() == username) {return (i);};
+    }
+    return(-1); //return -1 if not found
+};
+
+int EmployeesList::FindUserbyID(int id) const
+{   //Looks for the employee, returns the index or -1 if not found
+    // loop through the employees
+    for (size_t i = 0; i < employees.size(); i++)
+    {   // look for the username and return the index
+        if (employees[i].GetID() == id) {return (i);};
     }
     return(-1); //return -1 if not found
 };
@@ -34,4 +44,45 @@ void EmployeesList::MakeSomeEmployees()
 void EmployeesList::ViewSelf(const Login& login) const
 {
     std::cout << login.GetUserIn();
+};
+
+void EmployeesList::ViewOther() const
+{   // Searches for and print an employee other than the user
+    // Permissions have already been confirmed
+
+    std::string searchterm;
+    std::cout << "Specify employee by username or id:\n";
+    std::cin >> searchterm;
+
+    // If the user enters a non-numeric string, the try fails and 
+    // the catch searches by username. If the user enters a number
+    // the try succeeds and the try searches by ID
+    int i = -1;
+    try
+    {
+        int id = std::stoi(searchterm);
+        i = FindUserbyID(id);
+    }
+    catch (...)
+    {
+        i = FindUserbyUsername(searchterm);
+    }
+    if (i > -1){ std::cout << employees[i];}
+    else {std::cout << "Did not find a user with that informtion.\n";}
+};
+
+void EmployeesList::Search() const
+{
+};
+
+void EmployeesList::Add()
+{
+};
+
+void EmployeesList::Modify()
+{
+};
+
+void EmployeesList::Remove()
+{
 };

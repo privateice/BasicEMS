@@ -4,7 +4,7 @@ int Login::ProcessAuthentication( EmployeesList emp,
                     std::string username, 
                     std::string pwd) 
 {
-    int userindex = emp.FindUser(username);
+    int userindex = emp.FindUserbyUsername(username);
     if (userindex > -1 ) {
         Employee employee = emp.GetEmployees()[userindex];
         bool check = employee.CheckPassword(pwd);

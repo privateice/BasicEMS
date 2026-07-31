@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
 #include <set>
+#include "Login.h"
 #include "Employee.h"
 
+class EmployeesList;
 class Menu{
 
     private:
@@ -19,6 +21,7 @@ class Menu{
     public:
         void PrintMenu() const;
         std::string GetMenuSelection() const;
-        int ProcessSelectedCommand(std::string command, Employee userin) const;
+        int ProcessSelectedCommand(std::string command, 
+                Login login, EmployeesList employees);
         Menu(Employee userin);
 };
