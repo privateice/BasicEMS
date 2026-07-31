@@ -3,6 +3,8 @@
 #include <vector>
 #include "Employee.h"
 
+class Login;
+
 class EmployeesList
 {
     private:
@@ -12,5 +14,6 @@ class EmployeesList
         void MakeSomeEmployees();
         EmployeesList();
         std::vector<Employee> GetEmployees() const {return(employees);};
+        void ViewSelf(const Login& login) const;
 };
 

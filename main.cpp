@@ -21,7 +21,7 @@ int main() {
         menu.PrintMenu();
         login.GetUserIn().PrintEmployee();
         std::cout << login.GetUserIn();
-
+        employees.ViewSelf(login);
 
 
 

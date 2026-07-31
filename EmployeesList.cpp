@@ -1,4 +1,5 @@
 #include "EmployeesList.h"
+#include "Login.h"
 
 EmployeesList::EmployeesList() 
 {
@@ -30,3 +31,7 @@ void EmployeesList::MakeSomeEmployees()
             Permissions(true, false, false, false, false, false)));
 };
 
+void EmployeesList::ViewSelf(const Login& login) const
+{
+    std::cout << login.GetUserIn();
+};
