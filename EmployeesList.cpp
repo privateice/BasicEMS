@@ -19,14 +19,14 @@ void EmployeesList::MakeSomeEmployees()
 {   //just makes some dummy employees for testing
     employees.push_back(
         Employee("Renee Resource", "renee", "passwordHR", 1001, 
-            Permissions(true, true, true, true, true)));
+            Permissions(true, true, true, true, true, true)));
 
     employees.push_back(
         Employee("Manny Manager", "manny", "passwordM", 1002, 
-            Permissions(true, true, false, false, false)));
+            Permissions(true, true, true, false, false, false)));
 
     employees.push_back(
         Employee("Emmiline Employee", "emmy", "passwordE", 1003, 
-            Permissions(true, false, false, false, false)));
+            Permissions(true, false, false, false, false, false)));
 };
 

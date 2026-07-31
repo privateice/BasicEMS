@@ -25,3 +25,23 @@ bool Employee::CheckPassword(std::string pwd) const
     if (hasher(pwd) == password) {return(true);}
     return(false);
 };
+
+void Employee::PrintEmployee() const
+{
+    std::cout << "Employee Record\n\tName: " << GetName()
+        << "\n\tUsername: " << GetUsername()
+        << "\n\tEmployeeID: " << GetID()
+        << "\n\tPermissions: " << GetPermissions()
+        << "\n";
+};
+
+std::ostream& operator<<(std::ostream& out, const Employee& employee)
+{
+    out << "Employee Record\n\tName: " << employee.GetName()
+        << "\n\tUsername: " << employee.GetUsername()
+        << "\n\tEmployeeID: " << employee.GetID()
+        << "\n\tPermissions: " << employee.GetPermissions()
+        << "\n";
+
+    return out;
+}

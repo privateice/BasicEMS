@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <functional>
+#include <iostream>
+#include <ostream>
 #include <string>
 #include "Permissions.h"
 
@@ -19,8 +21,11 @@ class Employee
         int GetID()const;
         Permissions GetPermissions() const;
         bool CheckPassword(std::string pwd) const;
+        void PrintEmployee() const;
 
         Employee(std::string pname, std::string puser, std::string ppwd, 
                 int pID, Permissions pperms);
 
 };
+
+std::ostream& operator<<(std::ostream& out, const Employee& employee);
