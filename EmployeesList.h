@@ -13,6 +13,7 @@ class EmployeesList
     public:
         int FindUserbyUsername(std::string username) const;
         int FindUserbyID(int id) const;
+        int FindbyUsernameorID(std::string searchterm)const;
         void MakeSomeEmployees();
         EmployeesList();
         std::vector<Employee> GetEmployees() const {return(employees);};
