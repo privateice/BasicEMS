@@ -22,6 +22,6 @@ class Menu{
         void PrintMenu() const;
         std::string GetMenuSelection() const;
         int ProcessSelectedCommand(std::string command, 
-                Login login, EmployeesList employees);
+                Login login, EmployeesList& employees);
         Menu(Employee userin);
 };

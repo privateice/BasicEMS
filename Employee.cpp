@@ -26,12 +26,11 @@ bool Employee::CheckPassword(std::string pwd) const
     return(false);
 };
 
-void Employee::PrintEmployee() const
+void Employee::PrintShortEmployee() const
 {
-    std::cout << "Employee Record\n\tName: " << GetName()
-        << "\n\tUsername: " << GetUsername()
-        << "\n\tEmployeeID: " << GetID()
-        << "\n\tPermissions: " << GetPermissions()
+    std::cout << "Name: " << GetName()
+        << "\tUsername: " << GetUsername()
+        << "\tEmployeeID: " << GetID()
         << "\n";
 };
 

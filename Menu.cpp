@@ -34,7 +34,7 @@ std::string Menu::GetMenuSelection() const
     return(command);
 };
 
-int Menu::ProcessSelectedCommand(std::string command, Login login, EmployeesList employees)
+int Menu::ProcessSelectedCommand(std::string command, Login login, EmployeesList& employees)
 {   
     if (login.GetUserIn().CheckPermissions(command))
     {

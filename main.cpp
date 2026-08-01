@@ -27,8 +27,9 @@ int main() {
             menu.ProcessSelectedCommand(command, login, employees);
 
         } while (true);
-
         
+        std::cout << "After the erase\n";
+        employees.PrintEmployeesListShort(employees.GetEmployees());
 
 
 

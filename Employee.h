@@ -22,7 +22,7 @@ class Employee
         Permissions GetPermissions() const;
         bool CheckPermissions(std::string command) const;
         bool CheckPassword(std::string pwd) const;
-        void PrintEmployee() const;
+        void PrintShortEmployee() const;
         
 
         Employee(std::string pname, std::string puser, std::string ppwd, 

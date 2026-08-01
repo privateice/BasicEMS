@@ -26,6 +26,34 @@ int EmployeesList::FindUserbyID(int id) const
     return(-1); //return -1 if not found
 };
 
+int EmployeesList::FindbyUsernameorID(std::string searchterm)const
+{   // If the user enters a non-numeric string, the try fails and 
+    // the catch searches by username. If the user enters a number
+    // the try succeeds and the try searches by ID
+    int i = -1;
+    try
+    {
+        int id = std::stoi(searchterm);
+        i = FindUserbyID(id);
+    }
+    catch (...)
+    {
+        i = FindUserbyUsername(searchterm);
+    };
+    return(i);
+};
+
+int EmployeesList::FindbyName(std::string searchterm)const
+{
+    return(0);
+};
+
+void EmployeesList::PrintEmployeesListShort(const std::vector<Employee>& empstoprint) const
+{
+    for (const Employee& employee : empstoprint)
+        {employee.PrintShortEmployee();};
+};
+
 void EmployeesList::MakeSomeEmployees() 
 {   //just makes some dummy employees for testing
     employees.push_back(
@@ -38,6 +66,10 @@ void EmployeesList::MakeSomeEmployees()
 
     employees.push_back(
         Employee("Emmiline Employee", "emmy", "passwordE", 1003, 
+            Permissions(true, false, false, false, false, false)));
+    
+    employees.push_back(
+        Employee("Emmiline2 Employee2", "emmy2", "passwordE", 1004, 
             Permissions(true, false, false, false, false, false)));
 };
 
@@ -54,19 +86,7 @@ void EmployeesList::ViewOther() const
     std::cout << "Specify employee by username or id:\n";
     std::cin >> searchterm;
 
-    // If the user enters a non-numeric string, the try fails and 
-    // the catch searches by username. If the user enters a number
-    // the try succeeds and the try searches by ID
-    int i = -1;
-    try
-    {
-        int id = std::stoi(searchterm);
-        i = FindUserbyID(id);
-    }
-    catch (...)
-    {
-        i = FindUserbyUsername(searchterm);
-    }
+    int i = FindbyUsernameorID(searchterm);
     if (i > -1){ std::cout << employees[i];}
     else {std::cout << "Did not find a user with that informtion.\n";}
 };
@@ -85,4 +105,30 @@ void EmployeesList::Modify()
 
 void EmployeesList::Remove()
 {
+    std::string searchterm;
+    std::cout << "Specify employee to remove by username or id:\n";
+    std::cin >> searchterm;
+
+    int i = FindbyUsernameorID(searchterm);
+
+    if (i > -1)
+        { 
+            std::cout << "Employee found:\n"
+                << employees[i];
+            char response;
+            do
+            {   
+                std::cout << "Are you sure you'd like to remove this employee? (Y/n)";
+                std::cin >> response;
+            } while (response != 'Y' && response != 'n');
+            if (response == 'Y')
+            {
+                employees.erase(employees.begin() + i);
+                std::cout << "Employee identified by " << searchterm   
+                    << " was removed from the Employee list.\n\n";
+                PrintEmployeesListShort(employees);
+            }
+            else {std::cout << "Employee was not removed.\n\n";};
+        }
+    else {std::cout << "Did not find an employee with that informtion.\n\n";};
 };
