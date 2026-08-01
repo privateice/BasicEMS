@@ -28,8 +28,8 @@ int main() {
 
         } while (true);
         
-        std::cout << "After the erase\n";
-        employees.PrintEmployeesListShort(employees.GetEmployees());
+        // std::cout << "After the erase\n";
+        // employees.PrintEmployeesListShort(employees.GetEmployees());
 
 
 

@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "Utilities.h"
 #include "Employee.h"
 
 class Login;
@@ -14,7 +15,7 @@ class EmployeesList
         int FindUserbyUsername(std::string username) const;
         int FindUserbyID(int id) const;
         int FindbyUsernameorID(std::string searchterm)const;
-        int FindbyName(std::string searchterm)const;
+        std::vector<Employee> FindbyName(std::string searchterm)const;
         void PrintEmployeesListShort(const std::vector<Employee>& empstoprint) const;
         void MakeSomeEmployees();
         EmployeesList();

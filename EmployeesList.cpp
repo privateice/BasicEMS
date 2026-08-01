@@ -43,13 +43,27 @@ int EmployeesList::FindbyUsernameorID(std::string searchterm)const
     return(i);
 };
 
-int EmployeesList::FindbyName(std::string searchterm)const
-{
-    return(0);
+std::vector<Employee> EmployeesList::FindbyName(std::string searchterm)const
+{   //Looks for the employee by name
+    // returns a vector of matches or an empty vector if none found
+    
+    std::vector<Employee> matches;
+
+    for (const Employee& employee : employees)
+    {
+        if (ToLower(employee.GetName()).find(searchterm) != std::string::npos)
+            {matches.push_back(employee);};
+    };
+    return(matches); 
 };
 
 void EmployeesList::PrintEmployeesListShort(const std::vector<Employee>& empstoprint) const
 {
+    if (empstoprint.empty())
+    {
+        std::cout << "No employees to print.\n";
+        return;
+    }
     for (const Employee& employee : empstoprint)
         {employee.PrintShortEmployee();};
 };
@@ -93,6 +107,15 @@ void EmployeesList::ViewOther() const
 
 void EmployeesList::Search() const
 {
+    std::string searchterm;
+
+    std::cout << "Specify employee by username or id:\n";
+    std::cin >> searchterm;
+
+    std::vector<Employee>  matches = FindbyName(searchterm);
+    std::cout << matches.size() << " matches found.\n";
+    PrintEmployeesListShort(matches);
+    std::cout << "\nUse viewother and the username or ID shown here\n\tto view an employee.\n";
 };
 
 void EmployeesList::Add()

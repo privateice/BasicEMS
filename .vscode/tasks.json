@@ -16,6 +16,7 @@
                 "EmployeesList.cpp",
                 "Login.cpp",
                 "Menu.cpp",
+                "Utilities.cpp",
                 "-o",
                 "${workspaceFolder}/BasicEMS"
             ],
