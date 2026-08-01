@@ -17,6 +17,16 @@ Permissions::Permissions(bool mview, bool mviewo, bool msearch, bool madd, bool 
     remove = mrem;
 };
 
+Permissions::Permissions()
+{
+    viewself = true;
+    viewother = false;
+    search = false;
+    add = false;
+    modify = false;
+    remove = false;
+};
+
 std::ostream& operator<<(std::ostream& out, const Permissions& perms)
 {
     out << "\tView Self: " << (perms.MayViewSelf() ? "yes" : "no") << "\n\t\t\t"

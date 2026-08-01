@@ -16,7 +16,8 @@ class Menu{
             "search",
             "add",
             "modify",
-            "remove"
+            "remove",
+            "logout"
         };
     public:
         void PrintMenu() const;

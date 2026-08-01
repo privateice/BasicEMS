@@ -11,7 +11,7 @@ Menu::Menu(Employee userin)
     if (perms.MayAdd()){menustr += "add - add an employee\n";}
     if (perms.MayModify()){menustr += "modify - modify an employee\n";}
     if (perms.MayRemove()){menustr += "remove - remove an employee\n";}
-    menustr += "exit - exit the program\n\n";
+    menustr += "logout - Log out of your account\nexit - exit the program\n\n";
 
 };
 
@@ -44,7 +44,7 @@ int Menu::ProcessSelectedCommand(std::string command, Login login, EmployeesList
         if (command == "add") {employees.Add(); return(0);};
         if (command == "modify") {employees.Modify(); return(0);};
         if (command == "remove") {employees.Remove(); return(0);};
-        std::cout << "Process commands will happen here.\n";
+        // std::cout << "Process commands will happen here.\n";
     }
     else 
     { 

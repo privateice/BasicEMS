@@ -5,6 +5,11 @@
 #include "Menu.h"
 #include <iostream>
 
+#include <cstdlib>
+#include <ctime>
+
+
+
 
 
 
@@ -12,6 +17,9 @@ int main() {
     std::cout << "Employee Management System running..." << std::endl;
     EmployeesList employees;
     std::string command = "exit";
+
+    // seeds the random number generator
+    std::srand(std::time(nullptr));
 
     do // main event loop
     {
@@ -23,6 +31,7 @@ int main() {
         {
             menu.PrintMenu();
             command = menu.GetMenuSelection();
+            if (command == "logout") {break;};
             if (command == "exit"){break;};
             menu.ProcessSelectedCommand(command, login, employees);
 

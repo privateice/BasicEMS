@@ -20,6 +20,13 @@ public:
     bool MayModify() const;
     bool MayRemove() const;
     Permissions(bool mview, bool mviewo, bool msearch, bool madd, bool mmod, bool mrem);
+    Permissions();
+    static Permissions HRPerms()
+        {return Permissions(true, true, true, true, true, true);};
+    static Permissions ManagerPerms()
+        {return Permissions(true, true, true, false, false, false);};
+    static Permissions EmployeePerms()
+        {return Permissions(true, false, false, false, false, false);};
 };
 
 std::ostream& operator<<(std::ostream& out, const Permissions& perms);

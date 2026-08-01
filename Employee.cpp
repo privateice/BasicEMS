@@ -57,4 +57,20 @@ std::ostream& operator<<(std::ostream& out, const Employee& employee)
     return out;
 };
 
+std::string Employee::GeneratePassword(int length)
+{   //Generates a random password
+    const std::string alphabet =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz"
+        "0123456789"
+        "!@#$%^&*()_+-=";
+
+    std::string pwd;
+
+    for (int i = 0; i < length; ++i)
+        {pwd += alphabet[rand() % alphabet.size()];};
+    std::cout << "Make a note of the temporary password for the employee.\n"
+        << "Temporary password: " << pwd << "\n\n";
+    return pwd;
+};
 

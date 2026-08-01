@@ -118,12 +118,141 @@ void EmployeesList::Search() const
     std::cout << "\nUse viewother and the username or ID shown here\n\tto view an employee.\n";
 };
 
+std::string EmployeesList::GetConfirmedName() const
+{
+    std::string name;
+    char response;
+    while (true)
+    {    
+        std::cout << "Enter the Employee's full name:\n";
+        std::getline(std::cin >> std::ws, name);
+        std::cout << name << "\nIs this correct?(Y/n):\n";
+        std::cin >> response;
+        // if response is Y, the loop breaks and accepts the name
+        if (response == 'Y') { break;}
+        //if response is 'n' or anything else, the loop continues
+    };
+    return(name);
+};
+
+std::string EmployeesList::GetUniqueUsername() const
+{
+    std::string user;
+    int uniq;
+    do
+    {
+        std::cout << "Enter a unique username:\n";
+        std::cin >> user;
+        uniq = FindUserbyUsername(user);
+        if (uniq != -1)
+            {std::cout << user << " is already in use.\n";};
+    } while (uniq != -1);
+    return(user);
+};
+
+
+int EmployeesList::GetUniqueID() const
+{
+    int uniq, id;
+    std::string ID;
+
+    do
+    {
+        std::cout << "Enter a valid unique ID number (integer only):\n";
+        std::cin >> ID;
+
+        try
+        {
+            size_t pos;
+            id = std::stoi(ID, &pos);
+
+            if (pos != ID.length())
+                { throw std::invalid_argument("Not a pure integer");};
+
+            uniq = FindUserbyID(id);
+
+            if (uniq != -1)
+                { std::cout << "That ID is already in use.\n";};
+        }
+        catch (...)
+        {
+            std::cout << "That is not a valid integer ID.\n";
+            uniq = 0; 
+        }
+    } while (uniq != -1);
+    return(id);
+};
+
+Permissions EmployeesList::GetPermissionsPreset() const
+{
+    Permissions perms;
+    char response;
+    do
+    {
+        std::cout << "At present, you may preset permissions by role.\n"
+            << "Set permissions for HR(r), Manager(m), General Employee(e): (r/m/e)\n";
+        std::cin >> response;
+    } while (response != 'r' && response != 'm' && response != 'e');
+    switch (response)
+    {
+        case 'r':
+            perms = Permissions::HRPerms();
+            break;
+        case 'm':
+            perms = Permissions::ManagerPerms();
+            break;
+        case 'e':
+            perms = Permissions::EmployeePerms();
+            break;
+    };
+    return(perms);
+};
+
+char EmployeesList::AddPreflight() const
+{
+    std::string searchterm;
+    char response;
+    // Employee precheck: does this employee exist already
+    std::cout << "Before adding an employee, make sure it doesn't exist already.\n"
+        << "Specify employee by Name (partial okay, case insensitive):\n";
+    std::cin >> searchterm;
+    std::vector<Employee>  matches = FindbyName(searchterm);
+    if (!matches.empty())
+    {
+        PrintEmployeesListShort(matches);
+        do
+        {
+            std::cout << "Add a new employee or modify an existing one? (a/m): ";
+            std::cin >> response;
+        }
+        while (response != 'a' && response != 'm'); 
+    };
+    return(response);
+};
+
 void EmployeesList::Add()
 {
+    std::string name, user, ID, pwd;
+    int id;
+    Permissions perms;
+
+    if (AddPreflight() == 'm') { Modify(); return;};
+    name = GetConfirmedName();
+    user = GetUniqueUsername();
+    id = GetUniqueID();
+    perms = GetPermissionsPreset();
+    pwd = Employee::GeneratePassword();
+    Employee newemp = Employee(name, user, pwd, id, perms);
+    employees.push_back(newemp);
+    std::cout << "New employee added.\n" << newemp << "\n"
+        << "Temporary Password: " << pwd << "\n\n";
+
+    return;
 };
 
 void EmployeesList::Modify()
-{
+{ 
+    std::cout << "Modify is not implemented yet.\n\n";
 };
 
 void EmployeesList::Remove()

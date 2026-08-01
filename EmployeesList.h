@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Utilities.h"
 #include "Employee.h"
+#include "Permissions.h"
 
 class Login;
 
@@ -11,6 +12,12 @@ class EmployeesList
 {
     private:
         std::vector<Employee> employees;
+        char AddPreflight() const;
+        std::string GetUniqueUsername() const;
+        int GetUniqueID() const;
+        Permissions GetPermissionsPreset() const;
+        std::string GetConfirmedName() const;
+
     public:
         int FindUserbyUsername(std::string username) const;
         int FindUserbyID(int id) const;
