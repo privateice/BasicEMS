@@ -109,7 +109,7 @@ void EmployeesList::Search() const
 {
     std::string searchterm;
 
-    std::cout << "Specify employee by username or id:\n";
+    std::cout << "Specify employee by Name (partial okay, case insensitive):\n";
     std::cin >> searchterm;
 
     std::vector<Employee>  matches = FindbyName(searchterm);
