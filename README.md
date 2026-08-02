@@ -1,9 +1,10 @@
 # BasicEMS
 
-Study.com CS112 final project.
-The PDF file in the repo describes the assignment.
+Final Project  
+The PDF file in the repo describes the assignment.  
+All code and this readme &copy; Mary E Tyler 2026.  
 
-Built with:
+###Built with:
 - C++17
 - Apple Clang
 - VS Code
@@ -38,16 +39,16 @@ encapsulation, operator overloading, static members, and separation of functiona
 
 ###Notes
 -----
-Employee records are stored in memory only.
-Data is not persisted between program executions.
+Employee records are stored in memory only.  
+Data is not persisted between program executions.  
 
 ###Sample Users to Facilitate Testing
 ----------------------------------
-####Username    Password
-renee       passwordHR
-manny       passwordM
-emmy        passwordE
-emmy2       passwordE
+####Username    Password  
+renee       passwordHR  
+manny       passwordM  
+emmy        passwordE  
+emmy2       passwordE  
 
 ###Project Structure
 -----------------
