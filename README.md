@@ -14,7 +14,7 @@ Description
 -----------
 BasicEMS is a console-based Employee Management System written in C++.
 The program demonstrates object-oriented programming concepts including
-encapsulation, inheritance (if used), operator overloading, static members, and separation of functionality into multiple classes.
+encapsulation, operator overloading, static members, and separation of functionality into multiple classes.
 
 Features
 --------
