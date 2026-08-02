@@ -16,7 +16,7 @@ std::string ToLower(std::string s)
 
 std::string Trim(std::string s)
 {   // This trims white space from the ront and back of a string.
-    
+
     while (!s.empty() && std::isspace(s.front()))
         s.erase(s.begin());
 
@@ -25,3 +25,5 @@ std::string Trim(std::string s)
 
     return s;
 };
+
+// © Mary E Tyler 2026

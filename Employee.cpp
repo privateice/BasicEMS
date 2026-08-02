@@ -69,3 +69,4 @@ std::string Employee::GeneratePassword(int length)
     return pwd;
 };
 
+// © Mary E Tyler 2026

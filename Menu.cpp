@@ -62,3 +62,5 @@ int Menu::ProcessSelectedCommand(std::string command, Login login, EmployeesList
     };
     return(0);
 };
+
+// © Mary E Tyler 2026

@@ -353,3 +353,5 @@ void EmployeesList::Remove()
         }
     else {std::cout << "Did not find an employee with that informtion.\n\n";};
 };
+
+// © Mary E Tyler 2026

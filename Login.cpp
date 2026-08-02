@@ -58,3 +58,4 @@ int Login::ProcessLogin(EmployeesList emp)
     return (rescode); // rescode = 1
 };
 
+// © Mary E Tyler 2026

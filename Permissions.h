@@ -34,3 +34,5 @@ class Permissions
 
 // operator overload for printing permissions
 std::ostream& operator<<(std::ostream& out, const Permissions& perms);
+
+// © Mary E Tyler 2026

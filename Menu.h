@@ -26,3 +26,5 @@ class Menu
                 Login login, EmployeesList& employees);
         Menu(Employee userin);
 };
+
+// © Mary E Tyler 2026

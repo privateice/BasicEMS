@@ -42,3 +42,5 @@ class Employee
 
 // operator overload for printing an employee
 std::ostream& operator<<(std::ostream& out, const Employee& employee);
+
+// © Mary E Tyler 2026

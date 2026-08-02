@@ -3,7 +3,7 @@
 
 Permissions::Permissions(bool mview, bool mviewo, bool msearch, bool madd, bool mmod, bool mrem)
 {   // Constructor with individual settings
-    
+
     viewself = mview;
     viewother = mviewo;
     search = msearch;
@@ -35,4 +35,6 @@ std::ostream& operator<<(std::ostream& out, const Permissions& perms)
         << "\n";
 
     return out;
-}
+};
+
+// © Mary E Tyler 2026

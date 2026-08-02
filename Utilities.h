@@ -4,3 +4,5 @@
 
 std::string ToLower(std::string s);
 std::string Trim(std::string s);
+
+// © Mary E Tyler 2026

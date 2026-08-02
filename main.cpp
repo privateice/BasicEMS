@@ -10,7 +10,7 @@
 
 int main() {
     // Classic entry poin for the program
-    
+
     std::cout << "Employee Management System running..." << std::endl;
     EmployeesList employees;
     std::string command = "exit";
@@ -38,3 +38,5 @@ int main() {
     std::cout << "Thank you for running the EMS. Bye!\n\n";
     return(0);
 };
+
+// © Mary E Tyler 2026

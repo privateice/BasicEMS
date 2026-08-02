@@ -39,3 +39,4 @@ class EmployeesList
         void Remove();
 };
 
+// © Mary E Tyler 2026
