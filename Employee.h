@@ -7,7 +7,7 @@
 #include "Permissions.h"
 
 class Employee
-{
+{   // The basic employee record
     private:
         std::string name, username;
         size_t password;
@@ -15,22 +15,30 @@ class Employee
         Permissions permissions;
         
     public:
-        std::string GetUsername() const;
-        void SetUsername(std::string newuser);
-        std::string GetName() const;
-        void SetName(std::string newname);
-        size_t GetPassword() const;
-        int GetID()const;
-        Permissions GetPermissions() const;
-        void SetPermissions(Permissions newperms);
-        bool CheckPermissions(std::string command) const;
+        // Username functions
+        std::string GetUsername() const{ return(username);};
+        void SetUsername(std::string newuser){username = newuser;};
+
+        // Name functions
+        std::string GetName() const{ return(name);};
+        void SetName(std::string newname){name = newname;};
+
+        // Password functions
+        size_t GetPassword() const{ return(password);};
+        static std::string GeneratePassword(int length = 8);
         bool CheckPassword(std::string pwd) const;
 
+        // Permissions functions
+        Permissions GetPermissions() const {return(permissions);};
+        void SetPermissions(Permissions newperms){permissions = newperms;};
+        bool CheckPermissions(std::string command) const;
+
+        // ID, print, Constructor functions
+        int GetID() const{ return(ID);};
         void PrintShortEmployee() const;
-        static std::string GeneratePassword(int length = 8);
         Employee(std::string pname, std::string puser, std::string ppwd, 
                 int pID, Permissions pperms);
-
 };
 
+// operator overload for printing an employee
 std::ostream& operator<<(std::ostream& out, const Employee& employee);

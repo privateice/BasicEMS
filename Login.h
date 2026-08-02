@@ -8,7 +8,8 @@
 #include "EmployeesList.h"
 
 class Login
-{
+{   // processed employee login and maintains record of what employee
+    // is logged in. 
     private:
         std::optional<Employee> userin = std::nullopt;
     

@@ -1,14 +1,9 @@
 #include "Permissions.h"
 
-bool Permissions::MayViewSelf()     const { return viewself; };
-bool Permissions::MayViewOther()     const { return viewother; };
-bool Permissions::MaySearch()   const { return search; };
-bool Permissions::MayAdd()      const { return add; };
-bool Permissions::MayModify()   const { return modify; };
-bool Permissions::MayRemove()   const { return remove; };
 
 Permissions::Permissions(bool mview, bool mviewo, bool msearch, bool madd, bool mmod, bool mrem)
-{
+{   // Constructor with individual settings
+    
     viewself = mview;
     viewother = mviewo;
     search = msearch;
@@ -18,7 +13,8 @@ Permissions::Permissions(bool mview, bool mviewo, bool msearch, bool madd, bool 
 };
 
 Permissions::Permissions()
-{
+{   // default constructor only permits viewself
+
     viewself = true;
     viewother = false;
     search = false;
@@ -28,7 +24,8 @@ Permissions::Permissions()
 };
 
 std::ostream& operator<<(std::ostream& out, const Permissions& perms)
-{
+{   // operator override to print permissions
+
     out << "\tView Self: " << (perms.MayViewSelf() ? "yes" : "no") << "\n\t\t\t"
         << "Search: " << (perms.MaySearch() ? "yes" : "no") << "\t"
         << "View Other: " << (perms.MayViewOther() ? "yes" : "no") << "\n\t\t\t"

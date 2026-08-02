@@ -5,8 +5,8 @@
 #include "Employee.h"
 
 class EmployeesList;
-class Menu{
-
+class Menu
+{   // Handles the menu (with permissions) and processes commands
     private:
         std::string menustr;
         const std::set<std::string> allvalidcommands = {

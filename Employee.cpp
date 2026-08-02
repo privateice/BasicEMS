@@ -4,24 +4,14 @@
 Employee::Employee(std::string pname, std::string puser, 
             std::string ppwd, int pID, Permissions pperms)
             : permissions(pperms)
-{
+{   // Employee Constructor, sets employee variables
+    // password is stored as a hash
     std::hash<std::string> hasher;
     name = pname;
     username = puser;
     password = hasher(ppwd);
     ID = pID;
 };
-
-std::string Employee::GetUsername() const{ return(username);};
-void Employee::SetUsername(std::string newuser){username = newuser;};
-std::string Employee::GetName() const{ return(name);};
-void Employee::SetName(std::string newname){name = newname;};
-size_t Employee::GetPassword() const{ return(password);};
-int Employee::GetID() const{ return(ID);};
-Permissions Employee::GetPermissions() const {return(permissions);};
-void Employee::SetPermissions(Permissions newperms){permissions = newperms;};
-
-
 
 bool Employee::CheckPassword(std::string pwd) const
 {   // check if the password matches: true if yes, false if no
@@ -31,7 +21,7 @@ bool Employee::CheckPassword(std::string pwd) const
 };
 
 void Employee::PrintShortEmployee() const
-{
+{   // prints the name, username and ID
     std::cout << "Name: " << GetName()
         << "\tUsername: " << GetUsername()
         << "\tEmployeeID: " << GetID()
@@ -40,6 +30,7 @@ void Employee::PrintShortEmployee() const
 
 bool Employee::CheckPermissions(std::string command) const
 {   // checks if an Employee may perform the requested command
+    // does not include commands everyone may perform: exit, logout
 
     if (command == "viewself"){ return(permissions.MayViewSelf());};
     if (command == "viewother"){ return(permissions.MayViewOther());};
@@ -51,18 +42,17 @@ bool Employee::CheckPermissions(std::string command) const
 };
 
 std::ostream& operator<<(std::ostream& out, const Employee& employee)
-{
+{   // operator overload for printing an employee
     out << "Employee Record\n\tName: " << employee.GetName()
         << "\n\tUsername: " << employee.GetUsername()
         << "\n\tEmployeeID: " << employee.GetID()
         << "\n\tPermissions: " << employee.GetPermissions()
         << "\n";
-
     return out;
 };
 
 std::string Employee::GeneratePassword(int length)
-{   //Generates a random password
+{   //Randomly generates a short, strong password, default length = 8 char
     const std::string alphabet =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz"
@@ -71,6 +61,7 @@ std::string Employee::GeneratePassword(int length)
 
     std::string pwd;
 
+    // production version would not use rand(), but okay for an assignment
     for (int i = 0; i < length; ++i)
         {pwd += alphabet[rand() % alphabet.size()];};
     std::cout << "Make a note of the temporary password for the employee.\n"
