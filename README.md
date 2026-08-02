@@ -44,12 +44,12 @@ Data is not persisted between program executions.
 
 ### Default/Test Accounts
 ----------------------------------
-| Username | Password |
-|----------|----------|
-| renee    | passwordHR |
-| manny    | passwordM |
-| emmy     | passwordE |
-| emmy2    | passwordE |
+| Username | Password | Type |
+|----------|----------|------|
+| renee    | passwordHR | HR |
+| manny    | passwordM | Manager |
+| emmy     | passwordE | Employee |
+| emmy2    | passwordE | Employee |
 
 ### Project Structure
 -----------------
