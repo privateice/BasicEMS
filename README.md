@@ -44,7 +44,7 @@ Data is not persisted between program executions.
 
 ### Sample Users to Facilitate Testing
 ----------------------------------
-| #### Username | #### Password |
+| Username | Password |
 |----------|----------|
 | renee    | passwordHR |
 | manny    | passwordM |
