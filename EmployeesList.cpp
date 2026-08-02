@@ -69,7 +69,10 @@ void EmployeesList::PrintEmployeesListShort(const std::vector<Employee>& empstop
 };
 
 void EmployeesList::MakeSomeEmployees() 
-{   //just makes some dummy employees for testing
+{   // makes some dummy employees for testing
+    // if you add more, keep the IDs sequential
+    // so that you don't break currMaxID
+    
     employees.push_back(
         Employee("Renee Resource", "renee", "passwordHR", 1001, 
             Permissions(true, true, true, true, true, true)));
@@ -85,6 +88,8 @@ void EmployeesList::MakeSomeEmployees()
     employees.push_back(
         Employee("Emmiline2 Employee2", "emmy2", "passwordE", 1004, 
             Permissions(true, false, false, false, false, false)));
+    
+    currMaxID = 1000 + employees.size();
 };
 
 void EmployeesList::ViewSelf(const Login& login) const
@@ -243,7 +248,7 @@ void EmployeesList::Add(Login login)
     if (AddPreflight(login) == 'm') { Modify(login); return;};
     name = GetConfirmedName();
     user = GetUniqueUsername();
-    id = GetUniqueID();
+    id = ++currMaxID;
     perms = GetPermissionsPreset();
     pwd = Employee::GeneratePassword();
     Employee newemp = Employee(name, user, pwd, id, perms);
