@@ -9,4 +9,15 @@ std::string ToLower(std::string s)
         });
 
     return s;
-}
+};
+
+std::string Trim(std::string s)
+{
+    while (!s.empty() && std::isspace(s.front()))
+        s.erase(s.begin());
+
+    while (!s.empty() && std::isspace(s.back()))
+        s.pop_back();
+
+    return s;
+};

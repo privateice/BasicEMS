@@ -41,8 +41,8 @@ int Menu::ProcessSelectedCommand(std::string command, Login login, EmployeesList
         if (command == "viewself") {employees.ViewSelf(login); return(0);};
         if (command == "viewother") {employees.ViewOther(); return(0);};
         if (command == "search") {employees.Search(); return(0);};
-        if (command == "add") {employees.Add(); return(0);};
-        if (command == "modify") {employees.Modify(); return(0);};
+        if (command == "add") {employees.Add(login); return(0);};
+        if (command == "modify") {employees.Modify(login); return(0);};
         if (command == "remove") {employees.Remove(); return(0);};
         // std::cout << "Process commands will happen here.\n";
     }

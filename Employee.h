@@ -16,10 +16,13 @@ class Employee
         
     public:
         std::string GetUsername() const;
+        void SetUsername(std::string newuser);
         std::string GetName() const;
+        void SetName(std::string newname);
         size_t GetPassword() const;
         int GetID()const;
         Permissions GetPermissions() const;
+        void SetPermissions(Permissions newperms);
         bool CheckPermissions(std::string command) const;
         bool CheckPassword(std::string pwd) const;
 

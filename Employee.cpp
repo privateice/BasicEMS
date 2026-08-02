@@ -13,10 +13,14 @@ Employee::Employee(std::string pname, std::string puser,
 };
 
 std::string Employee::GetUsername() const{ return(username);};
+void Employee::SetUsername(std::string newuser){username = newuser;};
 std::string Employee::GetName() const{ return(name);};
+void Employee::SetName(std::string newname){name = newname;};
 size_t Employee::GetPassword() const{ return(password);};
 int Employee::GetID() const{ return(ID);};
 Permissions Employee::GetPermissions() const {return(permissions);};
+void Employee::SetPermissions(Permissions newperms){permissions = newperms;};
+
 
 
 bool Employee::CheckPassword(std::string pwd) const

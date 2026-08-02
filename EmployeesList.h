@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <limits>
 #include "Utilities.h"
 #include "Employee.h"
 #include "Permissions.h"
@@ -12,11 +13,11 @@ class EmployeesList
 {
     private:
         std::vector<Employee> employees;
-        char AddPreflight() const;
-        std::string GetUniqueUsername() const;
+        char AddPreflight(Login login) const;
+        std::string GetUniqueUsername(bool allowSkip = false) const;
         int GetUniqueID() const;
         Permissions GetPermissionsPreset() const;
-        std::string GetConfirmedName() const;
+        std::string GetConfirmedName(bool allowSkip = false) const;
 
     public:
         int FindUserbyUsername(std::string username) const;
@@ -30,8 +31,8 @@ class EmployeesList
         void ViewSelf(const Login& login) const;
         void ViewOther() const;
         void Search() const;
-        void Add();
-        void Modify();
+        void Add(Login login);
+        void Modify(Login login);
         void Remove();
 };
 

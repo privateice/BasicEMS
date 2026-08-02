@@ -98,7 +98,7 @@ void EmployeesList::ViewOther() const
 
     std::string searchterm;
     std::cout << "Specify employee by username or id:\n";
-    std::cin >> searchterm;
+    std::getline(std::cin >> std::ws, searchterm);
 
     int i = FindbyUsernameorID(searchterm);
     if (i > -1){ std::cout << employees[i];}
@@ -110,7 +110,7 @@ void EmployeesList::Search() const
     std::string searchterm;
 
     std::cout << "Specify employee by Name (partial okay, case insensitive):\n";
-    std::cin >> searchterm;
+    std::getline(std::cin >> std::ws, searchterm);
 
     std::vector<Employee>  matches = FindbyName(searchterm);
     std::cout << matches.size() << " matches found.\n";
@@ -118,31 +118,35 @@ void EmployeesList::Search() const
     std::cout << "\nUse viewother and the username or ID shown here\n\tto view an employee.\n";
 };
 
-std::string EmployeesList::GetConfirmedName() const
+std::string EmployeesList::GetConfirmedName(bool allowSkip) const
 {
     std::string name;
-    char response;
+    std::string response;
     while (true)
     {    
         std::cout << "Enter the Employee's full name:\n";
-        std::getline(std::cin >> std::ws, name);
+        std::getline(std::cin, name);
+        name = Trim(name);
+        if (allowSkip && name.empty()) {return name;};
         std::cout << name << "\nIs this correct?(Y/n):\n";
-        std::cin >> response;
+        std::getline(std::cin >> std::ws, response);
         // if response is Y, the loop breaks and accepts the name
-        if (response == 'Y') { break;}
+        if (response == "Y") { break;}
         //if response is 'n' or anything else, the loop continues
     };
     return(name);
 };
 
-std::string EmployeesList::GetUniqueUsername() const
+std::string EmployeesList::GetUniqueUsername(bool allowSkip) const
 {
     std::string user;
     int uniq;
     do
     {
         std::cout << "Enter a unique username:\n";
-        std::cin >> user;
+        std::getline(std::cin, user);
+        user = Trim(user);
+        if (allowSkip && user.empty()) {return user;};
         uniq = FindUserbyUsername(user);
         if (uniq != -1)
             {std::cout << user << " is already in use.\n";};
@@ -159,7 +163,7 @@ int EmployeesList::GetUniqueID() const
     do
     {
         std::cout << "Enter a valid unique ID number (integer only):\n";
-        std::cin >> ID;
+        std::getline(std::cin >> std::ws, ID);
 
         try
         {
@@ -193,6 +197,7 @@ Permissions EmployeesList::GetPermissionsPreset() const
             << "Set permissions for HR(r), Manager(m), General Employee(e): (r/m/e)\n";
         std::cin >> response;
     } while (response != 'r' && response != 'm' && response != 'e');
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     switch (response)
     {
         case 'r':
@@ -208,14 +213,13 @@ Permissions EmployeesList::GetPermissionsPreset() const
     return(perms);
 };
 
-char EmployeesList::AddPreflight() const
+char EmployeesList::AddPreflight(Login login) const
 {
-    std::string searchterm;
-    char response;
+    std::string searchterm, response;
     // Employee precheck: does this employee exist already
     std::cout << "Before adding an employee, make sure it doesn't exist already.\n"
         << "Specify employee by Name (partial okay, case insensitive):\n";
-    std::cin >> searchterm;
+    std::getline(std::cin >> std::ws, searchterm);
     std::vector<Employee>  matches = FindbyName(searchterm);
     if (!matches.empty())
     {
@@ -223,20 +227,20 @@ char EmployeesList::AddPreflight() const
         do
         {
             std::cout << "Add a new employee or modify an existing one? (a/m): ";
-            std::cin >> response;
+            std::getline(std::cin >> std::ws, response);
         }
-        while (response != 'a' && response != 'm'); 
+        while (response != "a" && response != "m"); 
     };
-    return(response);
+    return(response[0]);
 };
 
-void EmployeesList::Add()
+void EmployeesList::Add(Login login)
 {
     std::string name, user, ID, pwd;
     int id;
     Permissions perms;
 
-    if (AddPreflight() == 'm') { Modify(); return;};
+    if (AddPreflight(login) == 'm') { Modify(login); return;};
     name = GetConfirmedName();
     user = GetUniqueUsername();
     id = GetUniqueID();
@@ -250,16 +254,59 @@ void EmployeesList::Add()
     return;
 };
 
-void EmployeesList::Modify()
+void EmployeesList::Modify(Login login)
 { 
-    std::cout << "Modify is not implemented yet.\n\n";
+    int i;
+    std::string newname, newuser, responsestr;
+    Permissions newperms;
+    char response;
+
+    do
+    {
+        std::string searchterm;
+
+        std::cout << "Specify the employee to modify by username or id,\n"
+            << "or (b) to back out and run a search at the command prompt:\n";
+        std::getline(std::cin >> std::ws, searchterm);
+        if (searchterm == "b"){return;};
+
+        i = FindbyUsernameorID(searchterm);
+        if (i > -1){ std::cout << employees[i];}
+        else {std::cout << "Did not find a user with that information.\n";}
+    } while (i == -1);
+
+    Employee& employee = employees[i];
+    std::cout << "You may change the employee Name, UserName and Permissions. "
+        << "ID may not be changed.\n";
+    
+    std::cout << "Employee name: " << employee.GetName() << "\n"
+        << "Enter a new name or hit return to skip:\n";
+    newname = GetConfirmedName(true);
+    if (!newname.empty()){employee.SetName(newname);};
+    std::cout << "Employee username: " << employee.GetUsername() << "\n"
+        << "Enter a new name or hit return to skip:\n";
+    newuser = GetUniqueUsername(true);
+    if (!newuser.empty()){employee.SetUsername(newuser);};
+
+    if (login.GetUserIn().GetID() != employee.GetID())
+    {
+        do
+        {
+            std::cout << "Would you like to change the permissions? (Y/n)\n";
+            std::getline(std::cin >> std::ws, responsestr);
+        } while (responsestr != "Y" && responsestr != "n");
+        if (responsestr == "Y"){employee.SetPermissions(GetPermissionsPreset());};
+    }
+    else {std::cout << "Sorry, but you cannot modify your own permissions.\n";}
+
+    std::cout << "You have modified the employee:\n" << employee;
 };
 
 void EmployeesList::Remove()
 {
     std::string searchterm;
     std::cout << "Specify employee to remove by username or id:\n";
-    std::cin >> searchterm;
+    std::getline(std::cin >> std::ws, searchterm);
 
     int i = FindbyUsernameorID(searchterm);
 
@@ -267,13 +314,13 @@ void EmployeesList::Remove()
         { 
             std::cout << "Employee found:\n"
                 << employees[i];
-            char response;
+            std::string response;
             do
             {   
                 std::cout << "Are you sure you'd like to remove this employee? (Y/n)";
-                std::cin >> response;
-            } while (response != 'Y' && response != 'n');
-            if (response == 'Y')
+                std::getline(std::cin >> std::ws, response);
+            } while (response != "Y" && response != "n");
+            if (response == "Y")
             {
                 employees.erase(employees.begin() + i);
                 std::cout << "Employee identified by " << searchterm   
