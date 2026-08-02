@@ -44,11 +44,12 @@ Data is not persisted between program executions.
 
 ### Sample Users to Facilitate Testing
 ----------------------------------
-#### Username    Password  
-renee       passwordHR  
-manny       passwordM  
-emmy        passwordE  
-emmy2       passwordE  
+| #### Username | #### Password |
+|----------|----------|
+| renee    | passwordHR |
+| manny    | passwordM |
+| emmy     | passwordE |
+| emmy2    | passwordE |
 
 ### Project Structure
 -----------------
