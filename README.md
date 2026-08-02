@@ -4,21 +4,21 @@ Final Project
 The PDF file in the repo describes the assignment.  
 All code and this readme &copy; Mary E Tyler 2026.  
 
-###Built with:
+### Built with:
 - C++17
 - Apple Clang
 - VS Code
 - git
 
-##Employee Management System (BasicEMS)
+## Employee Management System (BasicEMS)
 
-###Description
+### Description
 -----------
 BasicEMS is a console-based Employee Management System written in C++.
 The program demonstrates object-oriented programming concepts including
 encapsulation, operator overloading, static members, and separation of functionality into multiple classes.
 
-###Features
+### Features
 --------
 - User authentication
 - Permission-based access control
@@ -30,27 +30,27 @@ encapsulation, operator overloading, static members, and separation of functiona
 - Automatically generate passwords
 - Logout without exiting the program
 
-###Design Decisions
+### Design Decisions
 ----------------
 - Employee IDs are automatically assigned to prevent duplicate IDs.
 - Usernames must be unique.
 - Users cannot modify their own permissions.
 - Permission presets simplify creation of HR, Manager, and Employee accounts.
 
-###Notes
+### Notes
 -----
 Employee records are stored in memory only.  
 Data is not persisted between program executions.  
 
-###Sample Users to Facilitate Testing
+### Sample Users to Facilitate Testing
 ----------------------------------
-####Username    Password  
+#### Username    Password  
 renee       passwordHR  
 manny       passwordM  
 emmy        passwordE  
 emmy2       passwordE  
 
-###Project Structure
+### Project Structure
 -----------------
 - main.cpp - Program entry point.
 - Employee.h / Employee.cpp - Employee class and related functions.
@@ -60,7 +60,7 @@ emmy2       passwordE
 - Menu.h / Menu.cpp - Displays menus and executes user commands.
 - Utilities.h / Utilities.cpp - Helper functions.
 
-###Compilation
+### Compilation
 -----------
 Compile using a C++17 compiler.
 
