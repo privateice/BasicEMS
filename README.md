@@ -42,7 +42,7 @@ encapsulation, operator overloading, static members, and separation of functiona
 Employee records are stored in memory only.  
 Data is not persisted between program executions.  
 
-### Sample Users to Facilitate Testing
+### Default/Test Accounts
 ----------------------------------
 | Username | Password |
 |----------|----------|
